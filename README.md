@@ -1,0 +1,1 @@
+This script gives you total control of your vehicle. It also allows you to unlock and lock your vehicle while outside and double tap e. You can open all the doors with proper indicators, start the engine, and roll down your windows all synced with other players.
