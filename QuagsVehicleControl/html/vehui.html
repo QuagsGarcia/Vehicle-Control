@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+		<script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+		<style>
+      .container {visibility: hidden;}
+		</style>
+	</head>
+  <body id="body">
+    <div class="container">
+      <div class="content">
+        <div class="slot" id="1"><img id="ignition" src="img/ignition.png" /></div>
+        <div class="slot" id="2"><img id="underglow" src="img/underglow.png" /></div>
+        <div class="slot" id="3"><img id="frontHood" src="img/frontHood.png" /></div>
+        <div class="slot" id="4"><img id="rearHood" src="img/rearHood.png" /></div>
+        <div class="slot" id="5"><img id="lock" src="img/rearHood2.png" /></div>
+        <div class="slot" id="6"><img id="interiorLight" src="img/interiorLight.png" /></div>
+        <div class="slot" id="7"><img id="windowFrontLeft" src="img/windowFrontLeft.png" /></div>
+        <div class="slot" id="8"><img id="doorFrontLeft" src="img/doorFrontLeft.png" /></div>
+        <div class="slot" id="9"><img id="seatFrontLeft" src="img/seatFrontLeft.png" /></div>
+        <div class="slot" id="10"><img id="seatFrontRight" src="img/seatFrontLeft.png" /></div>
+        <div class="slot" id="11"><img id="doorFrontRight" src="img/doorFrontRight.png" /></div>
+        <div class="slot" id="12"><img id="windowFrontRight" src="img/windowFrontRight.png" /></div>
+        <div class="slot" id="13"><img id="windowRearLeft" src="img/windowRearLeft.png" /></div>
+        <div class="slot" id="14"><img id="doorRearLeft" src="img/doorRearLeft.png" /></div>
+        <div class="slot" id="15"><img id="seatRearLeft" src="img/seatFrontLeft.png" /></div>
+        <div class="slot" id="16"><img id="seatRearRight" src="img/seatFrontLeft.png" /></div>
+        <div class="slot" id="17"><img id="doorRearRight" src="img/doorRearRight.png" /></div>
+        <div class="slot" id="18"><img id="windowRearRight" src="img/windowRearRight.png" /></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(function() {
+        /* open the UI for user */
+        window.addEventListener('message', function(event) {
+          if (event.data.type == "openGeneral"){
+            $('.container').css('visibility', 'visible');
+          } else if (event.data.type == "closeAll"){
+            $('.container').css('visibility', 'hidden');
+          }
+
+          if (event.data.type == "engineOn") {
+            $("#1").css("background-color", "#00AFDB");
+            $("#ignition").attr("src", "img/ignitionS.png");
+          } else if (event.data.type == "engineOff") {
+            $("#1").css("background-color", "#000000");
+            $("#ignition").attr("src", "img/ignition.png");
+          }
+
+          if (event.data.type == "underglowOn") {
+            $("#2").css("background-color", "#00AFDB");
+          } else if (event.data.type == "underglowOff") {
+            $("#2").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "intlOn") {
+            $("#6").css("background-color", "#00AFDB");
+          } else if (event.data.type == "intlOff") {
+            $("#6").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "frontHoodOn") {
+            $("#3").css("background-color", "#00AFDB");
+          } else if (event.data.type == "frontHoodOff") {
+            $("#3").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "rearHoodOn") {
+            $("#4").css("background-color", "#00AFDB");
+          } else if (event.data.type == "rearHoodOff") {
+            $("#4").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "lockOn") {
+            $("#5").css("background-color", "#00AFDB");
+          } else if (event.data.type == "lockOff") {
+            $("#5").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "d0On") {
+            $("#8").css("background-color", "#00AFDB");
+          } else if (event.data.type == "d0Off") {
+            $("#8").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "d1On") {
+            $("#11").css("background-color", "#00AFDB");
+          } else if (event.data.type == "d1Off") {
+            $("#11").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "d2On") {
+            $("#14").css("background-color", "#00AFDB");
+          } else if (event.data.type == "d2Off") {
+            $("#14").css("background-color", "#000000");
+          }
+
+          if (event.data.type == "d3On") {
+            $("#17").css("background-color", "#00AFDB");
+          } else if (event.data.type == "d3Off") {
+            $("#17").css("background-color", "#000000");
+          }
+        });
+      });
+  
+      document.onkeyup = function(data){
+        if (data.which == 27){
+          $('.container').css('visibility', 'hidden')
+              $.post('https://QuagsVehicleControl/NUIFocusOff', JSON.stringify({}));
+          }
+      }
+
+      $('#ignition').click(function(){
+        $.post('https://QuagsVehicleControl/ignition', JSON.stringify({}));
+      })
+      $('#lock').click(function(){
+        $.post('https://QuagsVehicleControl/lockVehicle', JSON.stringify({}));
+      })
+      $('#underglow').click(function(){
+        $.post('https://QuagsVehicleControl/neonToggle', JSON.stringify({}));
+      })
+      $('#frontHood').click(function(){
+        $.post('https://QuagsVehicleControl/doors', JSON.stringify({
+          door: 4
+        }));
+      })
+      $('#rearHood').click(function(){
+        $.post('https://QuagsVehicleControl/doors', JSON.stringify({
+          door: 5
+        }));
+      })
+      $('#interiorLight').click(function(){
+        $.post('https://QuagsVehicleControl/interiorLight', JSON.stringify({}));
+      })
+      $('#windowFrontLeft').click(function(){
+        $.post('https://QuagsVehicleControl/windows', JSON.stringify({
+          window: 0,
+          door: 0
+        }));
+      })
+      $('#doorFrontLeft').click(function(){
+        $.post('https://QuagsVehicleControl/doors', JSON.stringify({
+          door: 0
+        }));
+      })
+      $('#seatFrontLeft').click(function(){
+        $.post('https://QuagsVehicleControl/seatchange', JSON.stringify({
+          seat: -1
+        }));
+      })
+      $('#seatFrontRight').click(function(){
+        $.post('https://QuagsVehicleControl/seatchange', JSON.stringify({
+          seat: 0,
+        }));
+      })
+      $('#doorFrontRight').click(function(){
+        $.post('https://QuagsVehicleControl/doors', JSON.stringify({
+          door: 1
+        }));
+      })
+      $('#windowFrontRight').click(function(){
+        $.post('https://QuagsVehicleControl/windows', JSON.stringify({
+          window: 1,
+          door: 1
+        }));
+      })
+      $('#windowRearLeft').click(function(){
+        $.post('https://QuagsVehicleControl/windows', JSON.stringify({
+          window: 2,
+          door: 2
+        }));
+      })
+      $('#doorRearLeft').click(function(){
+        $.post('https://QuagsVehicleControl/doors', JSON.stringify({
+          door: 2
+        }));
+      })
+      $('#seatRearLeft').click(function(){
+        $.post('https://QuagsVehicleControl/seatchange', JSON.stringify({
+          seat: 1,
+        }));
+      })
+      $('#seatRearRight').click(function(){
+        $.post('https://QuagsVehicleControl/seatchange', JSON.stringify({
+          seat: 2,
+        }));
+      })
+      $('#doorRearRight').click(function(){
+        $.post('https://QuagsVehicleControl/doors', JSON.stringify({
+          door: 3
+        }));
+      })
+      $('#windowRearRight').click(function(){
+        $.post('https://QuagsVehicleControl/windows', JSON.stringify({
+          window: 3,
+          door: 3
+        }));
+      })
+    </script>
+  </body>
+</html>

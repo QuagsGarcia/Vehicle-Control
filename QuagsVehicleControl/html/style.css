@@ -1,0 +1,62 @@
+body {
+    /*background-color: transparent;*/
+    margin:0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    /*opacity: 0.0;*/
+}
+.container {
+    position: absolute;
+    left: 50%;
+    bottom: 2.083vw;
+    transform: translateX(-50%);
+    width: 19.53125vw;
+    height: 10.9375vw;
+    border-radius: 1.0416vw;
+    background-color: #1e1e1eeb;
+    border: 0.10416vw solid #c4c4c4;
+}
+.content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-gap: 0.260416vw;
+    box-sizing: border-box;
+    padding: 1.0416vw;
+}
+.overlay {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-size: 4.6875vw;
+    border-radius: 1.0416vw;
+    opacity: 0.25;
+    filter: contrast(25%);
+}
+.slot {
+    background-color: #000000;
+    margin: auto;
+    border-radius: 0.52083vw;
+    transition: background-color 0.3s;
+}
+img {
+    width: 2.60416vw;
+    height: 2.60416vw;
+    align-self: center;
+}
+
+.slot:hover {
+    background-color: #00AFDB;
+}
+
+.slot:active {
+    animation: clickOnSlot 0.1s;
+}
+
+@keyframes clickOnSlot {
+    from {transform: scale(1.0);}
+    to {transform: scale(0.9);}
+}
